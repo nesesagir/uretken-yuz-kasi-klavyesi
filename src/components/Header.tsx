@@ -1,9 +1,8 @@
 "use client";
 
 import { LanguageToggle } from "@/components/LanguageToggle";
-import { LlmToggle } from "@/components/LlmToggle";
 import { t } from "@/lib/copy";
-import type { Daypart, LlmId, Locale } from "@/types";
+import type { Daypart, Locale } from "@/types";
 import { BookOpen, ClipboardList, Maximize2, Minimize2, ScanFace } from "lucide-react";
 import Link from "next/link";
 
@@ -11,14 +10,11 @@ type Props = {
   locale: Locale;
   daypart?: Daypart;
   clock?: string;
-  provider?: LlmId;
   compact?: boolean;
-  showLlmToggle?: boolean;
   docsActive?: boolean;
   careActive?: boolean;
   fullscreen?: boolean;
   onLocale: (locale: Locale) => void;
-  onProvider?: (provider: LlmId) => void;
   onFullscreen?: () => void;
 };
 
@@ -34,14 +30,11 @@ export function Header({
   locale,
   daypart,
   clock,
-  provider = "gemini",
   compact = false,
-  showLlmToggle = false,
   docsActive = false,
   careActive = false,
   fullscreen = false,
   onLocale,
-  onProvider,
   onFullscreen,
 }: Props) {
   const ui = t(locale);
@@ -69,9 +62,6 @@ export function Header({
                 {clock}
               </time>
             </p>
-          ) : null}
-          {showLlmToggle && onProvider ? (
-            <LlmToggle locale={locale} provider={provider} onChange={onProvider} />
           ) : null}
           {onFullscreen ? (
             <button

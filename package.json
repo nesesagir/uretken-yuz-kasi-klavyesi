@@ -2,7 +2,7 @@
   "name": "uretken-yuz-kasi-klavyesi",
   "version": "1.0.0",
   "private": true,
-  "description": "Minimum kullanıcı etkileşimiyle güvenilir Türkçe cümle üreten, kişiselleştirilebilir kavram odaklı web-AAC sistemi.",
+  "description": "A personalizable concept-focused web AAC system that produces reliable Turkish sentences with minimal user interaction.",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

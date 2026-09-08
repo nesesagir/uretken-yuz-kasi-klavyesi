@@ -137,7 +137,6 @@ export const copy = {
     alarmBody: "Bakıcı bildirimi gönderildi.",
     emergencyCancelHint:
       "İptal: çenenizi sıkın, Esc'ye basın veya İPTAL düğmesine dokunun.",
-    llm: "Dil modeli",
     callCaregiver: "Bakıcıyı ara",
     caregiverPhoneLabel: "Bakıcı telefonu",
     caregiverPhonePlaceholder: "+90 …",
@@ -350,7 +349,6 @@ export const copy = {
     alarmTitle: "Emergency alarm",
     alarmBody: "Caregiver notice sent.",
     emergencyCancelHint: "Cancel: clench your jaw, press Esc, or tap CANCEL.",
-    llm: "Language model",
     callCaregiver: "Call caregiver",
     caregiverPhoneLabel: "Caregiver phone",
     caregiverPhonePlaceholder: "+90 …",

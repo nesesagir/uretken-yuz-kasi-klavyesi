@@ -1,7 +1,7 @@
 "use client";
 
 import { t } from "@/lib/copy";
-import type { GenerateResult, Locale, SentenceAnalytics } from "@/types";
+import type { GenerateResult, Locale } from "@/types";
 
 type Props = {
   locale: Locale;
@@ -9,17 +9,9 @@ type Props = {
   source: GenerateResult["source"] | null;
   generating: boolean;
   speaking: boolean;
-  analytics: SentenceAnalytics | null;
 };
 
-export function SentenceStage({
-  locale,
-  sentence,
-  source,
-  generating,
-  speaking,
-  analytics,
-}: Props) {
+export function SentenceStage({ locale, sentence, source, generating, speaking }: Props) {
   const ui = t(locale);
   return (
     <section className="surface rounded-2xl px-4 py-3">
@@ -35,13 +27,7 @@ export function SentenceStage({
         {speaking ? <span className="text-slate-500">{ui.speaking}</span> : null}
         {source === "fallback" ? <span className="text-slate-500">{ui.fallback}</span> : null}
         {source === "gemini" ? <span className="text-teal-700">Gemini</span> : null}
-        {source === "openai" ? <span className="text-teal-700">OpenAI</span> : null}
       </div>
-      {analytics ? (
-        <p className="mt-2 text-[11px] uppercase tracking-wider text-slate-400" aria-hidden="true">
-          {analytics.interactions}× · {analytics.latencyMs}ms · {analytics.provider}
-        </p>
-      ) : null}
     </section>
   );
 }

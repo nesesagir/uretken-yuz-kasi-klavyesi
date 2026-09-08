@@ -19,7 +19,6 @@ import { useFacePipeline } from "@/hooks/useFacePipeline";
 import { useScheduledVoiceNotes } from "@/hooks/useScheduledVoiceNotes";
 import { useSessionKiosk } from "@/hooks/useSessionKiosk";
 import { AlarmSynth } from "@/lib/alarm";
-import { AnalyticsSession } from "@/lib/analytics";
 import { publishEmergency } from "@/lib/browser-notify";
 import { appendCareJournal } from "@/lib/care-journal";
 import { CARE_PROFILE_KEY, loadCareProfile } from "@/lib/care-profile";
@@ -33,9 +32,7 @@ import type {
   EmergencyState,
   GenerateResult,
   GridCell,
-  LlmId,
   Locale,
-  SentenceAnalytics,
   SosState,
 } from "@/types";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -49,7 +46,6 @@ const idleEmergency: EmergencyState = {
 const idleSos: SosState = { active: false, reason: null };
 
 const alarm = new AlarmSynth();
-const analytics = new AnalyticsSession();
 
 function formatClock(date: Date): string {
   return date.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
@@ -57,7 +53,6 @@ function formatClock(date: Date): string {
 
 export function KeyboardApp() {
   const [locale, setLocale] = useState<Locale>("tr");
-  const [provider, setProvider] = useState<LlmId>("gemini");
   const [started, setStarted] = useState(false);
   const [starting, setStarting] = useState(false);
   const [startError, setStartError] = useState(false);
@@ -72,8 +67,6 @@ export function KeyboardApp() {
   const [sos, setSos] = useState<SosState>(idleSos);
   const [alarmNotified, setAlarmNotified] = useState(false);
   const [sosNotified, setSosNotified] = useState(false);
-  const [lastAnalytics, setLastAnalytics] = useState<SentenceAnalytics | null>(null);
-  const [openaiReady, setOpenaiReady] = useState(false);
   const [settings, setSettings] = useState<ClinicalSettings>(() => defaultClinicalSettings());
   const [sleeping, setSleeping] = useState(false);
   const [gridArmed, setGridArmed] = useState(false);
@@ -85,7 +78,6 @@ export function KeyboardApp() {
   const cellsRef = useRef<GridCell[]>([]);
   const keywordsRef = useRef<string[]>([]);
   const localeRef = useRef(locale);
-  const providerRef = useRef(provider);
   const emergencyRef = useRef(emergency);
   const sosRef = useRef(sos);
   const sleepingRef = useRef(sleeping);
@@ -108,7 +100,6 @@ export function KeyboardApp() {
   cellsRef.current = cells;
   keywordsRef.current = keywords;
   localeRef.current = locale;
-  providerRef.current = provider;
   emergencyRef.current = emergency;
   sosRef.current = sos;
   sleepingRef.current = sleeping;
@@ -147,20 +138,6 @@ export function KeyboardApp() {
     saveClinicalSettings(next);
   }
 
-  useEffect(() => {
-    void fetch("/api/config")
-      .then((response) => response.json())
-      .then((data: { activeLlm?: string; openaiReady?: boolean }) => {
-        setOpenaiReady(Boolean(data.openaiReady));
-        if (data.openaiReady && data.activeLlm === "openai") {
-          setProvider("openai");
-          return;
-        }
-        setProvider("gemini");
-      })
-      .catch(() => undefined);
-  }, []);
-
   const stopSpeaking = useCallback(() => {
     window.clearTimeout(speakTimerRef.current);
     setSpeaking(false);
@@ -189,8 +166,6 @@ export function KeyboardApp() {
     const controller = new AbortController();
     generateAbortRef.current = controller;
     const seq = ++generateSeqRef.current;
-    analytics.count();
-    analytics.markRequest();
     setGenerating(true);
     generatingRef.current = true;
     const timeout = window.setTimeout(() => controller.abort(), 20_000);
@@ -202,7 +177,6 @@ export function KeyboardApp() {
         body: JSON.stringify({
           keywords: selected,
           locale: localeRef.current,
-          provider: providerRef.current,
         }),
       });
       const data = (await response.json()) as GenerateResult;
@@ -210,11 +184,6 @@ export function KeyboardApp() {
       setSentence(data.sentence);
       setSource(data.source);
       sentenceRef.current = data.sentence;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setLastAnalytics(analytics.commit(data.source, selected.length));
-        });
-      });
       if (data.sentence) {
         lastSpokenRef.current = data.sentence;
         startSpeaking(data.sentence);
@@ -249,7 +218,6 @@ export function KeyboardApp() {
         const prev = keywordsRef.current;
         if (prev.includes(label) || prev.length >= 6) return;
         abortGenerate();
-        analytics.count();
         const next = [...prev, label];
         keywordsRef.current = next;
         setKeywords(next);
@@ -257,7 +225,6 @@ export function KeyboardApp() {
       }
       if (cell.action === "delete") {
         abortGenerate();
-        analytics.count();
         const next = keywordsRef.current.slice(0, -1);
         keywordsRef.current = next;
         setKeywords(next);
@@ -266,12 +233,10 @@ export function KeyboardApp() {
       if (cell.action === "clear") {
         abortGenerate();
         stopSpeaking();
-        analytics.abandon();
         keywordsRef.current = [];
         setKeywords([]);
         setSentence("");
         setSource(null);
-        setLastAnalytics(null);
         sentenceRef.current = "";
         setFocusIndex(1);
         return;
@@ -290,7 +255,6 @@ export function KeyboardApp() {
   const removeKeywordAt = useCallback(
     (index: number) => {
       abortGenerate();
-      analytics.count();
       const next = keywordsRef.current.filter((_, i) => i !== index);
       keywordsRef.current = next;
       setKeywords(next);
@@ -529,12 +493,9 @@ export function KeyboardApp() {
         locale={locale}
         daypart={daypart}
         clock={formatClock(now)}
-        provider={provider}
         compact={started}
-        showLlmToggle={openaiReady}
         fullscreen={fullscreen}
         onLocale={setLocale}
-        onProvider={setProvider}
         onFullscreen={started ? () => void toggleFullscreen() : undefined}
       />
 
@@ -593,7 +554,6 @@ export function KeyboardApp() {
                       source={source}
                       generating={generating}
                       speaking={speaking}
-                      analytics={lastAnalytics}
                     />
                     <WordGrid
                       locale={locale}

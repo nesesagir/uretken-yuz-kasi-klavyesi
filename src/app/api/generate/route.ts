@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_json" }, { status: 400 });
   }
 
-  const record = body as { keywords?: unknown; locale?: unknown; provider?: unknown };
+  const record = body as { keywords?: unknown; locale?: unknown };
   const keywords = parseKeywords(record.keywords);
   const locale: Locale = record.locale === "en" ? "en" : "tr";
 
@@ -35,6 +35,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_keywords" }, { status: 400 });
   }
 
-  const payload = await generateSentence(keywords, locale, record.provider);
+  const payload = await generateSentence(keywords, locale);
   return NextResponse.json(payload);
 }

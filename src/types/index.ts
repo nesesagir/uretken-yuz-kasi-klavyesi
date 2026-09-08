@@ -4,9 +4,7 @@ export type Daypart = "morning" | "afternoon" | "evening" | "night";
 
 export type TriggerMode = "jaw" | "blink";
 
-export type LlmId = "openai" | "gemini";
-
-export type LlmSource = LlmId | "fallback";
+export type LlmSource = "gemini" | "fallback";
 
 export type Point = {
   x: number;
@@ -74,14 +72,6 @@ export type ActionId = "generate" | "delete" | "clear" | "repeat";
 export type GenerateResult = {
   sentence: string;
   source: LlmSource;
-};
-
-export type SentenceAnalytics = {
-  interactions: number;
-  latencyMs: number;
-  provider: LlmSource;
-  keywordCount: number;
-  at: string;
 };
 
 export type CareJournalKind = "sentence" | "sos" | "alarm" | "note";
