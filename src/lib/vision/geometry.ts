@@ -1,16 +1,6 @@
-/**
- * Mathematical motor for blink selection.
- *
- * Distance-independent signals:
- *   1. Euclidean eyelid distances
- *   2. Division by face width (camera-distance invariance)
- *   3. Min–max scaling of the resulting ratio (anatomy invariance)
- */
-
 import { SLEEP_SHUT_RATIO } from "@/lib/constants";
 import type { Point } from "@/types";
 
-/** MediaPipe Face Mesh indices (image coordinates). */
 export const LM = {
   leftCheek: 234,
   rightCheek: 454,
@@ -24,9 +14,6 @@ export const LM = {
   lowerLip: 14,
 } as const;
 
-/**
- * d = √((x₂ − x₁)² + (y₂ − y₁)²)
- */
 export function euclidean(a: Point, b: Point): number {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }

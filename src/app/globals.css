@@ -33,7 +33,6 @@
   --muted: #64748b;
   --line: #e2e8f0;
   --teal: #0d9488;
-  --cyan: #0d9488;
   --danger: #e11d48;
 }
 
@@ -56,17 +55,8 @@ body {
 
 .hero-title {
   color: #0f172a;
-  background: none;
-  text-shadow: none !important;
-  filter: none !important;
-  -webkit-filter: none !important;
-  box-shadow: none !important;
-  -webkit-text-stroke: 0 !important;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
-  isolation: isolate;
-  mix-blend-mode: normal;
 }
 
 button {
@@ -146,11 +136,6 @@ button {
 
 .tone-mint {
   background: var(--teal);
-}
-
-.tone-gold,
-.tone-cyan {
-  background: var(--cyan);
 }
 
 .tone-danger {

@@ -1,14 +1,5 @@
 import type { Locale } from "@/types";
 
-export const DEFINITION_TR =
-  "Minimum kullanıcı etkileşimiyle güvenilir Türkçe cümle üreten, kişiselleştirilebilir kavram odaklı web-AAC sistemi.";
-
-export const DEFINITION_EN =
-  "A personalizable concept-focused web AAC system that produces reliable sentences with minimum user interaction.";
-
-/**
- * Grammar and role-fitting only — never unselected objects, people, or time.
- */
 export const TR_SYSTEM_PROMPT = `Sen bir web-AAC (destekleyici ve alternatif iletişim) cümle üreticisisin.
 
 Görevin: seçilen anahtar kelimeleri, Türkçenin sondan eklemeli yapısına uygun, doğal ve dilbilgisi doğru TEK bir cümleye çevirmek.
@@ -201,16 +192,3 @@ export function localFallback(keywords: string[], locale: Locale): string {
   if (wants.length) return `I want ${joinEnList(wants)}.`;
   return `I want ${compact.map((word) => word.toLowerCase()).join(" and ")}.`;
 }
-
-export const SENTENCE_JSON_SCHEMA = {
-  name: "aac_sentence",
-  strict: true as const,
-  schema: {
-    type: "object",
-    properties: {
-      sentence: { type: "string" },
-    },
-    required: ["sentence"],
-    additionalProperties: false,
-  },
-};

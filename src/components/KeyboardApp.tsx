@@ -5,7 +5,7 @@ import { CameraPanel } from "@/components/CameraPanel";
 import { EmergencyOverlay } from "@/components/EmergencyOverlay";
 import { Header } from "@/components/Header";
 import { HeroScreen } from "@/components/HeroScreen";
-import { IntentBar } from "@/components/IntentBar";
+import { KeywordBar } from "@/components/KeywordBar";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { SentenceStage } from "@/components/SentenceStage";
 import { SessionProtocol } from "@/components/SessionProtocol";
@@ -542,10 +542,10 @@ export function KeyboardApp() {
                 ) : null}
                 <div className={sleeping ? "pointer-events-none blur-sm opacity-40" : ""}>
                   <div className="grid gap-3">
-                    <IntentBar
+                    <KeywordBar
                       locale={locale}
                       keywords={keywords}
-                      emptyHint={settings.triggerMode === "jaw" ? ui.intentEmptyJaw : ui.intentEmpty}
+                      emptyHint={settings.triggerMode === "jaw" ? ui.keywordsEmptyJaw : ui.keywordsEmpty}
                       onRemove={removeKeywordAt}
                     />
                     <SentenceStage

@@ -1,12 +1,19 @@
 # Generative Facial Muscle Keyboard
 
-A personalizable, concept-focused web AAC system that produces reliable Turkish sentences with minimal user interaction.
+A concept-focused AAC app in the browser. The user selects keywords with facial muscles; Gemini writes one Turkish sentence. The face mesh stays on this device. There is no login.
 
-It is not limited to ALS. When motor, speech, or fatigue makes typing hard, the user selects keywords and a sentence is produced. The app runs in the browser. The face mesh stays on the device. There is no login.
+It is not limited to ALS. When motor control, speech, or fatigue makes typing hard, the same path still works.
 
-Live: [uretken-klavye.vercel.app](https://uretken-klavye.vercel.app)
+**Live:** [uretken-klavye.vercel.app](https://uretken-klavye.vercel.app)
 
----
+<p align="center">
+  <img src="docs/screenshots/06-keyboard.png" alt="Live session" width="880">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/01-landing.png" alt="Landing" width="430">
+  <img src="docs/screenshots/07-sos.png" alt="SOS" width="430">
+</p>
 
 ## How it works
 
@@ -16,11 +23,11 @@ The user does not type letters. They select concepts from a grid (`Water`, `Cold
 
 Unselected objects, emotions, temperature, or time are not added. The default selection method is a jaw clench (masseter).
 
-Sentences are produced with **Google Gemini** (`gemini-2.0-flash`). If the key is missing or the request fails, the sentence is built on this device with a local template.
+Sentences are produced with Google Gemini (`gemini-2.0-flash`). If the key is missing or the request fails, the sentence is built on this device with a local template.
 
-## Safety and care
+## Safety
 
-- **Fail-safe:** three long blinks within 6 seconds. A 5-second cancel window (jaw, Esc, or Cancel). Short blinks do not cancel.
+- **Fail-safe:** three long blinks within 6 seconds, then a 5-second cancel window (jaw, Esc, or Cancel). Short blinks do not cancel.
 - **SOS:** a sudden eyelid raise or a long jaw hold. Thresholds are not lowered. SOS stays on in rest mode.
 - **Care panel:** name, caregiver phone, personal words, voice notes, and a printable session summary. Names do not appear on the keyboard.
 - The camera opens only on HTTPS or localhost, after the first-session protocol is confirmed.
@@ -31,52 +38,26 @@ Sentences are produced with **Google Gemini** (`gemini-2.0-flash`). If the key i
 npm install
 ```
 
-Copy `.env.example` to `.env.local`, then:
-
-```bash
-npm run dev
-```
+Copy `.env.example` to `.env.local`, then `npm run dev`.
 
 - App: [http://localhost:3000](http://localhost:3000)
 - Documentation: [http://localhost:3000/docs](http://localhost:3000/docs)
-- Care and follow-up panel: [http://localhost:3000/bakim-ve-takip-paneli](http://localhost:3000/bakim-ve-takip-paneli)
+- Care panel: [http://localhost:3000/bakim-ve-takip-paneli](http://localhost:3000/bakim-ve-takip-paneli)
 
 The app can be added to the home screen from the browser menu. There is no heavy service worker, so MediaPipe and the camera session are not interrupted.
 
-## Environment variables
+### Environment
 
 | Variable | Purpose |
 | --- | --- |
 | `GEMINI_API_KEY` | Sentence generation (server-side only) |
 | `GEMINI_MODEL` | Default: `gemini-2.0-flash` |
 | `CAREGIVER_WEBHOOK_URL` | Optional caregiver webhook (server-side only) |
-| `NEXT_PUBLIC_SITE_URL` | Public site URL (for example the Vercel URL) |
+| `NEXT_PUBLIC_SITE_URL` | Public site URL |
 
 `CAREGIVER_WEBHOOK_URL` is never sent to the browser. The care panel in the same browser sees live alerts through `BroadcastChannel` and `/api/live-alert`.
 
-## Stack
-
-| Layer | Choice |
-| --- | --- |
-| UI | Next.js, React, TypeScript |
-| Vision | MediaPipe Face Landmarker (on-device) |
-| Sentence | Gemini; local template on failure |
-| Speech | Web Speech API |
-| Hosting | Vercel |
-
-## Source layout
-
-```
-src/
-  app/                 Pages and API
-  components/          UI
-  hooks/               Camera, scan, session
-  lib/llm/             Gemini and local fallback
-  lib/safety/          Fail-safe and SOS
-  lib/vision/          Eyes, jaw, baseline
-```
-
-## Controls
+### Controls
 
 | Input | Result |
 | --- | --- |
@@ -88,6 +69,8 @@ src/
 | Shift+E | SOS test |
 | Esc | Stops the alarm |
 | TR / EN | Grid, copy, and speech |
+
+Next.js, React, TypeScript, on-device MediaPipe Face Landmarker, Gemini with a local template fallback, Web Speech API, hosted on Vercel.
 
 ## License
 

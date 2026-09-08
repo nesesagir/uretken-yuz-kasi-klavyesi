@@ -3,7 +3,6 @@ import type { Daypart, Locale } from "@/types";
 export const copy = {
   tr: {
     product: "Üretken Yüz Kası Klavyesi",
-    productTag: "Kavram Odaklı Web-AAC",
     heroLead: "Kavram Odaklı Web-AAC Sistemi",
     heroBody:
       "Minimum hareket, eksiksiz iletişim. Yüz kaslarınızla saniyeler içinde doğal cümleler kurun.",
@@ -41,7 +40,7 @@ export const copy = {
     notesEnabled: "Aktif",
     copyright: "© 2026 Üretken Yüz Kası Klavyesi. Tüm hakları saklıdır.",
     docsLead:
-      "Medikal standartlara uygun, güvenli ve yormayan iletişim destek sistemi. Nasıl çalıştığına dair temel özellikleri aşağıda bulabilirsiniz.",
+      "Güvenli ve yormayan bir iletişim destek sistemi. Nasıl çalıştığı aşağıda.",
     docsConceptTitle: "Hızlı ve Doğal İletişim",
     docsConceptBody:
       "Harf harf yazarak yorulmanıza gerek yoktur. Sadece temel kelimeleri seçin, sistem sizin için saniyeler içinde anlamlı ve doğal cümleler kursun.",
@@ -68,13 +67,12 @@ export const copy = {
       "Nefes darlığı gibi panik anlarında (gözlerin aniden genişlemesi vb.), sistem bunu otomatik algılar ve çevrenizdekilere sesli Solunum/Yutma Güçlüğü acil durum uyarısı verir.",
     featureBrowser: "Tarayıcıda çalışır",
     featureBrowserBody: "Kurulum yok. Yüz görüntüsü bu sekmede kalır.",
-    featureZero: "Sıfır halüsinasyon",
+    featureZero: "Seçilen kelimeler",
     featureZeroBody: "Cümleye yalnızca seçtiğin kelimeler girer.",
     featurePersonal: "Kişiselleştirilebilir",
     featurePersonalBody:
       "Saat, dil ve bakım panelindeki en fazla 8 bağlam kelimesi ızgarayı kişiye göre dizer.",
-    startHint:
-      "Tarayıcı kamera isteyecek. Yüz ağı cihazda çalışır; görüntü sunucuya gitmez.",
+    startHint: "Kamera görüntüsü bu cihazda işlenir.",
     loadingModel: "Yüz ağı yükleniyor…",
     awaitingFace: "Yüzünüzü çerçeveye alın",
     calibrating: "Yüzünüzü çerçevede tutun",
@@ -84,15 +82,15 @@ export const copy = {
     noModel:
       "Yüz ağı yüklenemedi. Space tuşu ile ızgarayı kullanabilirsiniz.",
     retry: "Yeniden dene",
-    intent: "Anahtar kelimeler",
-    intentEmpty: "Kısa göz kırpma ile anahtar kelime ekleyin",
-    intentEmptyJaw: "Çene sıkma ile anahtar kelime ekleyin",
+    keywords: "Anahtar kelimeler",
+    keywordsEmpty: "Kısa göz kırpma ile anahtar kelime ekleyin",
+    keywordsEmptyJaw: "Çene sıkma ile anahtar kelime ekleyin",
     keywordRemove: "Bu kelimeyi çıkar",
     sentence: "Cümle",
     sentenceEmpty: "Üret’e seçince seçilen kelimeler tek cümleye döner",
     speaking: "Seslendiriliyor",
-    generating: "Cümle örülüyor…",
-    fallback: "Yerel yedek üretici",
+    generating: "Cümle hazırlanıyor…",
+    fallback: "Yerel yedek",
     blink: "Kısa kırp = seç",
     jawHint: "Çene sıkma = seç",
     space: "Space = yedek tıklama",
@@ -218,7 +216,6 @@ export const copy = {
   },
   en: {
     product: "Generative Facial Muscle Keyboard",
-    productTag: "Concept-focused Web-AAC",
     heroLead: "Concept-focused Web-AAC system",
     heroBody:
       "Minimal movement, complete communication. Form natural sentences in seconds with your facial muscles.",
@@ -256,7 +253,7 @@ export const copy = {
     notesEnabled: "Active",
     copyright: "© 2026 Üretken Yüz Kası Klavyesi. Tüm hakları saklıdır.",
     docsLead:
-      "A safe, low-fatigue communication support system aligned with medical standards. The essentials of how it works are below.",
+      "A safe, low-fatigue communication aid. How it works is below.",
     docsConceptTitle: "Fast and Natural Communication",
     docsConceptBody:
       "You do not need to spell letter by letter. Select only the core words; the system forms meaningful, natural sentences for you in seconds.",
@@ -283,13 +280,12 @@ export const copy = {
       "In moments of panic such as shortness of breath (sudden eye widening, and similar cues), the system detects this automatically and speaks a Breathing/Swallowing Difficulty emergency alert to those nearby.",
     featureBrowser: "Runs in the browser",
     featureBrowserBody: "No install. Face video never leaves this tab.",
-    featureZero: "Zero hallucination",
+    featureZero: "Selected words only",
     featureZeroBody: "Only the words you select enter the sentence.",
     featurePersonal: "Personalizable",
     featurePersonalBody:
       "Time of day, language, and up to eight care-panel context words reshape the grid.",
-    startHint:
-      "The browser will ask for the camera. The mesh runs on-device; video never leaves this tab.",
+    startHint: "Camera video is processed on this device.",
     loadingModel: "Loading face mesh…",
     awaitingFace: "Align your face in the frame",
     calibrating: "Keep your face in the frame",
@@ -298,14 +294,14 @@ export const copy = {
       "Camera unavailable. Use Chrome or Edge, allow access, then retry.",
     noModel: "Face mesh failed to load. You can still drive the grid with Space.",
     retry: "Retry",
-    intent: "Keywords",
-    intentEmpty: "Short blink to add a keyword",
-    intentEmptyJaw: "Jaw clench to add a keyword",
+    keywords: "Keywords",
+    keywordsEmpty: "Short blink to add a keyword",
+    keywordsEmptyJaw: "Jaw clench to add a keyword",
     keywordRemove: "Remove this word",
     sentence: "Sentence",
     sentenceEmpty: "Select Generate to turn keywords into one sentence",
     speaking: "Speaking",
-    generating: "Weaving the sentence…",
+    generating: "Preparing the sentence…",
     fallback: "Local fallback",
     blink: "Short blink = select",
     jawHint: "Jaw clench = select",

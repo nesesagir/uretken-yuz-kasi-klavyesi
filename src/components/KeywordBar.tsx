@@ -10,13 +10,13 @@ type Props = {
   onRemove?: (index: number) => void;
 };
 
-export function IntentBar({ locale, keywords, emptyHint, onRemove }: Props) {
+export function KeywordBar({ locale, keywords, emptyHint, onRemove }: Props) {
   const ui = t(locale);
   return (
     <section className="surface rounded-2xl px-4 py-3">
-      <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500">{ui.intent}</p>
+      <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500">{ui.keywords}</p>
       {keywords.length === 0 ? (
-        <p className="m-0 text-sm text-slate-600">{emptyHint ?? ui.intentEmpty}</p>
+        <p className="m-0 text-sm text-slate-600">{emptyHint ?? ui.keywordsEmpty}</p>
       ) : (
         <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
           {keywords.map((word, index) => (

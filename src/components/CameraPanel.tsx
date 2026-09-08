@@ -21,7 +21,7 @@ function Meter({
 }: {
   label: string;
   value: number;
-  tone: "mint" | "cyan" | "danger";
+  tone: "mint" | "danger";
 }) {
   return (
     <div>
@@ -87,7 +87,7 @@ export function CameraPanel({
           {metrics ? ` · ${metrics.fps} ${ui.fps}` : ""}
         </p>
         <Meter label={ui.openness} value={metrics?.opennessScaled ?? 0} tone="mint" />
-        <Meter label={ui.jawMeter} value={metrics?.jawScaled ?? 0} tone="cyan" />
+        <Meter label={ui.jawMeter} value={metrics?.jawScaled ?? 0} tone="mint" />
         <Meter label={ui.eyelidMeter} value={metrics?.eyelidRaise ?? 0} tone="danger" />
         <div className="safety-dots flex items-center gap-2" aria-label={ui.safety}>
           <span className="mr-1 text-xs text-slate-600">{ui.safety}</span>

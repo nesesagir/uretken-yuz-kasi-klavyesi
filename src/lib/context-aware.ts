@@ -1,6 +1,6 @@
-import { CONTEXT_SLOTS, CORE_IDS, VOCABULARY } from "@/lib/vocabulary";
+import { CORE_IDS, VOCABULARY } from "@/lib/vocabulary";
 import { defaultVocabPrefs, resolveContextWords } from "@/lib/vocab-prefs";
-import type { ActionId, Daypart, GridCell, VocabPrefs, Word } from "@/types";
+import type { Daypart, GridCell, VocabPrefs, Word } from "@/types";
 
 export function getDaypart(date: Date = new Date()): Daypart {
   const hour = date.getHours();
@@ -8,13 +8,6 @@ export function getDaypart(date: Date = new Date()): Daypart {
   if (hour >= 11 && hour < 17) return "afternoon";
   if (hour >= 17 && hour < 22) return "evening";
   return "night";
-}
-
-export function rankContextWords(daypart: Daypart, pool: Word[] = VOCABULARY): Word[] {
-  return pool
-    .filter((word) => !CORE_IDS.includes(word.id as (typeof CORE_IDS)[number]))
-    .sort((a, b) => b.weights[daypart] - a.weights[daypart])
-    .slice(0, CONTEXT_SLOTS);
 }
 
 export function buildGrid(daypart: Daypart, prefs: VocabPrefs = defaultVocabPrefs()): GridCell[] {
@@ -36,8 +29,4 @@ export function buildGrid(daypart: Daypart, prefs: VocabPrefs = defaultVocabPref
   ];
 
   return [...words, ...actions];
-}
-
-export function isAction(id: ActionId, cell: GridCell): boolean {
-  return cell.kind === "action" && cell.action === id;
 }
