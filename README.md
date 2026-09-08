@@ -1,4 +1,4 @@
-# Üretken Yüz Kası Klavyesi
+# Generative Facial Muscle Keyboard
 
 A personalizable, concept-focused web AAC system that produces reliable Turkish sentences with minimal user interaction.
 
@@ -10,9 +10,9 @@ Live: [uretken-klavye.vercel.app](https://uretken-klavye.vercel.app)
 
 ## How it works
 
-The user does not type letters. They select concepts from a grid (`Su`, `Soğuk`). The sentence is built only from those words:
+The user does not type letters. They select concepts from a grid (`Water`, `Cold`). The sentence is built only from those words:
 
-> Soğuk su istiyorum.
+> I want cold water.
 
 Unselected objects, emotions, temperature, or time are not added. The default selection method is a jaw clench (masseter).
 
@@ -20,7 +20,7 @@ Sentences are produced with **Google Gemini** (`gemini-2.0-flash`). If the key i
 
 ## Safety and care
 
-- **Fail-safe:** three long blinks within 6 seconds. A 5-second cancel window (jaw, Esc, or İPTAL). Short blinks do not cancel.
+- **Fail-safe:** three long blinks within 6 seconds. A 5-second cancel window (jaw, Esc, or Cancel). Short blinks do not cancel.
 - **SOS:** a sudden eyelid raise or a long jaw hold. Thresholds are not lowered. SOS stays on in rest mode.
 - **Care panel:** name, caregiver phone, personal words, voice notes, and a printable session summary. Names do not appear on the keyboard.
 - The camera opens only on HTTPS or localhost, after the first-session protocol is confirmed.
