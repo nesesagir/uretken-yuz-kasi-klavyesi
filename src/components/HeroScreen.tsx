@@ -25,7 +25,7 @@ export function HeroScreen({
   const ui = t(locale);
   const features = [
     { title: ui.featureBrowser, body: ui.featureBrowserBody, Icon: Globe },
-    { title: ui.featureZero, body: ui.featureZeroBody, Icon: ShieldCheck },
+    { title: ui.featureFidelity, body: ui.featureFidelityBody, Icon: ShieldCheck },
     { title: ui.featurePersonal, body: ui.featurePersonalBody, Icon: SlidersHorizontal },
   ];
 

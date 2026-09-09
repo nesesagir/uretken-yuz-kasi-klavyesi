@@ -67,8 +67,8 @@ export const copy = {
       "Nefes darlığı gibi panik anlarında (gözlerin aniden genişlemesi vb.), sistem bunu otomatik algılar ve çevrenizdekilere sesli Solunum/Yutma Güçlüğü acil durum uyarısı verir.",
     featureBrowser: "Tarayıcıda çalışır",
     featureBrowserBody: "Kurulum yok. Yüz görüntüsü bu sekmede kalır.",
-    featureZero: "Seçilen kelimeler",
-    featureZeroBody: "Cümleye yalnızca seçtiğin kelimeler girer.",
+    featureFidelity: "Seçilen kelimeler",
+    featureFidelityBody: "Cümleye yalnızca seçtiğin kelimeler girer.",
     featurePersonal: "Kişiselleştirilebilir",
     featurePersonalBody:
       "Saat, dil ve bakım panelindeki en fazla 8 bağlam kelimesi ızgarayı kişiye göre dizer.",
@@ -280,8 +280,8 @@ export const copy = {
       "In moments of panic such as shortness of breath (sudden eye widening, and similar cues), the system detects this automatically and speaks a Breathing/Swallowing Difficulty emergency alert to those nearby.",
     featureBrowser: "Runs in the browser",
     featureBrowserBody: "No install. Face video never leaves this tab.",
-    featureZero: "Selected words only",
-    featureZeroBody: "Only the words you select enter the sentence.",
+    featureFidelity: "Selected words only",
+    featureFidelityBody: "Only the words you select enter the sentence.",
     featurePersonal: "Personalizable",
     featurePersonalBody:
       "Time of day, language, and up to eight care-panel context words reshape the grid.",
