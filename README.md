@@ -69,4 +69,4 @@ Next.js, React, TypeScript, on-device MediaPipe Face Landmarker, Gemini with a l
 
 ## License
 
-Copyright © 2026 Neşe Sağır. All rights reserved.
+MIT License. Copyright © 2026 Neşe Sağır.
