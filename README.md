@@ -8,6 +8,10 @@ It is not limited to ALS. When motor control, speech, or fatigue makes typing ha
 
 <div align="center">
   <img src="docs/screenshots/06-keyboard.png" alt="Live session">
+  <p>
+    <img src="docs/screenshots/01-landing.png" alt="Landing" width="48%">
+    <img src="docs/screenshots/07-sos.png" alt="SOS" width="48%">
+  </p>
 </div>
 
 ## How it works
