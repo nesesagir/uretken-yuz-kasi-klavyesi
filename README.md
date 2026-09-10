@@ -22,6 +22,8 @@ Sentences are produced with Google Gemini (`gemini-2.0-flash`). If the key is mi
 
 ## Safety
 
+A neurologist’s clinical notes informed the default jaw trigger, the spasm filter, the unhurried 5–8 second selection window, and the SOS path. This is an AAC communication aid, not a medical device.
+
 - **Fail-safe:** three long blinks within 6 seconds, then a 5-second cancel window (jaw, Esc, or Cancel). Short blinks do not cancel.
 - **SOS:** a sudden eyelid raise or a long jaw hold. Thresholds are not lowered. SOS stays on in rest mode.
 - **Care panel:** name, caregiver phone, personal words, voice notes, and a printable session summary. Names do not appear on the keyboard.
