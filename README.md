@@ -7,13 +7,7 @@ It is not limited to ALS. When motor control, speech, or fatigue makes typing ha
 **Live:** [uretken-klavye.vercel.app](https://uretken-klavye.vercel.app)
 
 <p align="center">
-  <img src="docs/screenshots/06-keyboard.png" alt="Live session" width="680">
-</p>
-<p align="center">
   <img src="docs/screenshots/01-landing.png" alt="Landing" width="680">
-</p>
-<p align="center">
-  <img src="docs/screenshots/07-sos.png" alt="SOS" width="680">
 </p>
 
 ## How it works
@@ -24,11 +18,19 @@ The user does not type letters. They select concepts from a grid (`Water`, `Cold
 
 Unselected objects, emotions, temperature, or time are not added. The default selection method is a jaw clench (masseter).
 
+<p align="center">
+  <img src="docs/screenshots/06-keyboard.png" alt="Live session" width="680">
+</p>
+
 Sentences are produced with Google Gemini (`gemini-2.0-flash`). If the key is missing or the request fails, the sentence is built on this device with a local template.
 
 ## Safety
 
 A neurologist’s clinical notes informed the default jaw trigger, the spasm filter, the unhurried 5–8 second selection window, and the SOS path. This is an AAC communication aid, not a medical device.
+
+<p align="center">
+  <img src="docs/screenshots/07-sos.png" alt="SOS" width="680">
+</p>
 
 - **Fail-safe:** three long blinks within 6 seconds, then a 5-second cancel window (jaw, Esc, or Cancel). Short blinks do not cancel.
 - **SOS:** a sudden eyelid raise or a long jaw hold. Thresholds are not lowered. SOS stays on in rest mode.
